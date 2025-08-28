@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travail Final Infraestructure web</title>
     <link rel="stylesheet" href="style/styles.css">
-
 </head>
 <body">
     <section class="login-container">

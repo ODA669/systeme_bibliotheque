@@ -51,7 +51,7 @@
             <button type="submit" class="btn-submit">S'inscrire</button>
         </form>
         <div class="form-footer">
-            <p>Déjà un compte ? <a href="login.php">Se connecter</a></p>
+            <p>Déjà un compte ? <a href="index.php">Se connecter</a></p>
         </div>
     </div>
 
