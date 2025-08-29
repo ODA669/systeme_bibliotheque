@@ -6,12 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Client - Bibliothèque</title>
     <link rel="stylesheet" href="style/style_dashboard.css">
+
 </head>
 
 <body>
     <header>
-        <h1>Dashboard Client - Bibliothèque</h1>
-        <button class="logout-btn" onclick="alert('Déconnexion effectuée!')">Déconnexion</button>
+
+        <div class="dashboard-header">
+            <h1>Dashboard Client - Bibliothèque</h1>
+
+            <form method="post" action="logout.php">
+                <button type="submit">Déconnexion</button>
+            </form>
+        </div>
     </header>
 
     <main>
@@ -30,6 +37,21 @@
                 <li>
                     <span>Harry Potter</span>
                     <button class="request disabled" title="Maximum d'emprunts atteint">Demander emprunt</button>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Faire une demande d’emprunt pour un livre -->
+        <section>
+            <h2>Faire une demande d’emprunt</h2>
+            <ul>
+                <li>
+                    <span>Demande pour "Le Petit Prince"</span>
+                    <button class="request">Envoyer la demande</button>
+                </li>
+                <li>
+                    <span>Demande pour "Les Misérables"</span>
+                    <button class="request">Envoyer la demande</button>
                 </li>
             </ul>
         </section>

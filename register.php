@@ -70,16 +70,53 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->bind_param("ssssss", $username, $prenom, $nom, $email, $hashedPassword, $adresse);
     // var_dump($username, $prenom, $nom, $email, $hashedPassword, $adresse);
 
+    // if ($stmt->execute()) {
+    //     $_SESSION['success'] = "Utilisateur enregistré avec succès. Vous pouvez maintenant vous connecter.";
+
+    //     header("Location: index.php"); // Redirige a login
+
+    //     exit(); // Siempre exit después de header
+    // } else {
+    //     $_SESSION['error'] = "Erreur lors de l'enregistrement : " . $stmt->error;
+    //     header("Location: register_form.php");
+    //     exit();
+    // }
+    // if ($stmt->execute()) {
+    //     $_SESSION['success'] = "Utilisateur enregistré avec succès. Vous pouvez maintenant vous connecter.";
+
+    //     if ($tipo === "client") {
+    //         header("Location: employe_dashboard.php"); // Solo los clientes van al dashboard
+    //     } else {
+    //         header("Location: index.php"); // Los empleados van al login
+    //     }
+
+    //     exit(); // Siempre exit después de header
+    // } else {
+    //     $_SESSION['error'] = "Erreur lors de l'enregistrement : " . $stmt->error;
+    //     header("Location: register_form.php");
+    //     exit();
+    // }
+
     if ($stmt->execute()) {
-        $_SESSION['success'] = "Utilisateur enregistré avec succès. Vous pouvez maintenant vous connecter.";
+        $_SESSION['success'] = "Utilisateur enregistré avec succès.";
 
-        header("Location: index.php"); // Redirige a login
+        // Solo redirigir a dashboard si estamos creando un cliente desde el dashboard
+        if (isset($_POST['tipo']) && strtolower($_POST['tipo']) === 'client') {
+            header("Location: employe_dashboard.php"); // dashboard
+        } else {
+            header("Location: index.php"); // login para empleados o registro externo
+        }
 
-        exit(); // Siempre exit después de header
+        exit();
     } else {
         $_SESSION['error'] = "Erreur lors de l'enregistrement : " . $stmt->error;
-        header("Location: register_form.php");
-        exit();
+
+        // Solo redirigir a register_form.php si NO estamos en el dashboard
+        if (!isset($_POST['from_dashboard'])) {
+            header("Location: register_form.php");
+            exit();
+        }
+        // Si estamos en el dashboard, mostramos el error arriba del formulario
     }
 
     $stmt->close();
